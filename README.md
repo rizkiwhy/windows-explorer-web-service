@@ -25,7 +25,7 @@ The **Windows Explorer Web App** is a web-based application designed to replicat
 
 1. Clone the repository:
    ```bash
-   git clone [text](https://github.com/rizkiwhy/windows-explorer-web-service.git)
+   git clone https://github.com/rizkiwhy/windows-explorer-web-service.git
    cd windows-explorer-web-app
    ```
 2. Install dependencies:
