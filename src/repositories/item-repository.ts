@@ -18,7 +18,7 @@ export class ItemRepository {
                 children: true,
             } : {},
         });
-    
+
         return items.map((item: { 
             id: number, 
             name: string, 
@@ -45,7 +45,7 @@ export class ItemRepository {
     }    
 
     static async findById(id: number): Promise<any | null> {
-        return prismaClient.item.findUnique({
+        return await prismaClient.item.findUnique({
             where: {
                 id,
             },

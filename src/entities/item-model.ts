@@ -14,6 +14,7 @@ export type ItemResponse = {
     title: string
     parent_id?: number | null
     type: string
+    path: string | null
     created_at: string
     updated_at: string
     children?: ItemResponse[]
@@ -24,6 +25,7 @@ export const ItemResponseSchema = t.Object({
     title: t.String(),
     parent_id: t.Optional(t.Union([t.Number(), t.Null()])),
     type: t.String(),
+    path: t.Optional(t.Union([t.String(), t.Null()])),
     created_at: t.String(),
     updated_at: t.String(),
     children: t.Optional(t.Array(t.Unknown())),
@@ -52,6 +54,7 @@ export function toItemResponse(item: Item): ItemResponse {
         title: item.name,
         parent_id: item.parentId,
         type: item.type,
+        path: item.path,
         created_at: formatDate(item.createdAt),
         updated_at: formatDate(item.updatedAt),
     };
