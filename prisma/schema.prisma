@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Item {
+  id          Int       @id @default(autoincrement())
+  name        String    @db.VarChar(255)
+  parentId    Int?      @db.Int @map("parent_id")
+  type        String    @db.VarChar(50)
+  size        BigInt?   @db.BigInt
+  path        String?   @db.VarChar(500)
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  parent    Item?    @relation("ItemChildren", fields: [parentId], references: [id])
+  children  Item[]   @relation("ItemChildren")
+
+  @@index([parentId])
+  @@map("items")
+}
